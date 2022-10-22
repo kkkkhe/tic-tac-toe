@@ -1,27 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import { Square } from './components'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [values, setValue] = useState(new Array(9).fill('_'))
+  const [step,setStep] = useState(true)
+  const onClick = (value:any) => {
+    const move = step? 'X' : 'O'
+    setValue(values.map((square,id) => {
+      return id == value? move : values[id]
+    }))
+    setStep(!step)
+};
+  // const 
   return (
     <div className="App">
-      <Square/>
-      <Square/>
-      <Square/>
-
-      <Square/>
-      <Square/>
-      <Square/>
-
-      <Square/>
-      <Square/>
-      <Square/>
-      
+      {values.map((value,id) => {
+        return <Square key={id} value={value} values={values} onClick={onClick} id={id}/>
+      }) }
     </div>
   )
 }
 
 export default App
+
+
+// const winLine = (array: any) => {
+
+// }
