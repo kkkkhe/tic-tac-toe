@@ -3,7 +3,7 @@ import './App.css'
 import { Square } from './components'
 
 function App() {
-  const [values, setValue] = useState(new Array(9).fill('_'))
+  const [values, setValue] = useState(new Array(9).fill(null))
   const [step,setStep] = useState(true)
   const onClick = (value:any) => {
     const move = step? 'X' : 'O'
@@ -12,7 +12,7 @@ function App() {
     }))
     setStep(!step)
 };
-  // const 
+winLine(values, step)
   return (
     <div className="App">
       {values.map((value,id) => {
@@ -25,6 +25,21 @@ function App() {
 export default App
 
 
-// const winLine = (array: any) => {
-
-// }
+const winLine = (array: any, step: boolean) => {
+  const a = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ]
+  for(let i = 0; i < a.length; i++){
+    if(array[a[i][0]] === array[a[i][1]] && array[a[i][1]] === array[a[i][2]] && array[a[i][0]]){
+      if(step) console.log('O wins')
+      else console.log('X wins')
+    }
+  }
+}
