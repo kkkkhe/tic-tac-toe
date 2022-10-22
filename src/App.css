@@ -39,3 +39,8 @@
 .read-the-docs {
   color: #888;
 }
+.App{
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap:10px;
+}
