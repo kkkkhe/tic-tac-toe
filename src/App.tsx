@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Square } from './components'
+import { Restart, Square } from './components'
 
 function App() {
   const [values, setValue] = useState(new Array(9).fill(null))
@@ -18,6 +18,7 @@ winLine(values, step)
       {values.map((value,id) => {
         return <Square key={id} value={value} values={values} onClick={onClick} id={id}/>
       }) }
+      <Restart setValue={setValue} values={values}/>
     </div>
   )
 }
@@ -38,8 +39,9 @@ const winLine = (array: any, step: boolean) => {
   ]
   for(let i = 0; i < a.length; i++){
     if(array[a[i][0]] === array[a[i][1]] && array[a[i][1]] === array[a[i][2]] && array[a[i][0]]){
-      if(step) console.log('O wins')
-      else console.log('X wins')
+      if(step) alert('O wins')
+      else alert('X wins')
+      return true
     }
   }
 }
